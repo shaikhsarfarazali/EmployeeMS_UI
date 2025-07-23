@@ -1,0 +1,10 @@
+<div class="dashboard-container">
+    <h1>Welcome to Your Dashboard</h1>
+
+    <app-admin class="card" *ngIf="role === 'Admin'"></app-admin>
+
+    <app-hr class="card" *ngIf="role === 'Manager'"></app-hr>
+
+    <app-employee class="card" *ngIf="role === 'Employee'"></app-employee>
+
+</div>

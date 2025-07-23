@@ -1,0 +1,28 @@
+<div class="layout">
+    <aside class="sidebar">
+        <div class="brand">EMS</div>
+
+        <nav>
+            <!-- <a routerLink="/dashboard" routerLinkActive="active">
+                <span class="icon">🏠</span>
+                <span class="label">Dashboard</span>
+            </a> -->
+            <a *ngIf="isAdminOrHR()" routerLink="/employees" routerLinkActive="active">
+                <span class="icon">👥</span>
+                <span class="label">Employees</span>
+            </a>
+            <a *ngIf="isEmployee()" routerLink="/profile" routerLinkActive="active">
+                <span class="icon">🙍‍♂️</span>
+                <span class="label">My Profile</span>
+            </a>
+            <a (click)="logout()">
+                <span class="icon">🚪</span>
+                <span class="label">Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <router-outlet></router-outlet>
+    </main>
+</div>
