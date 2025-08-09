@@ -5,9 +5,9 @@ import { sharedImports } from '../../common/shared-imports';
 import { AuthService } from '../../services/core/auth.service';
 import { Store } from '@ngrx/store';
 import { deleteEmployee, loadEmployees } from '../../state/employees/employee.action';
-import { selectEmployees, selectEmployeesLoading } from '../../state/employees/employee.selector';
+import { selectEmployees, selectEmployeesLoaded, selectEmployeesLoading } from '../../state/employees/employee.selector';
 import { AsyncPipe } from '@angular/common';
-import { debounceTime, distinctUntilChanged, map, Observable, Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Observable, Subject, take, takeUntil } from 'rxjs';
 import { Employee } from '../../interfaces/employee.model';
 
 @Component({
@@ -22,6 +22,7 @@ export class EmployeeListComponent implements OnInit {
   private store = inject(Store);
   employee$ = this.store.select(selectEmployees);
   loading$ = this.store.select(selectEmployeesLoading);
+  loaded$ = this.store.select(selectEmployeesLoaded);
   filteredEmployees$: Observable<Employee[]>;
 
   employees: any[] = [];
@@ -59,7 +60,11 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getAllEmployees() {
-    this.store.dispatch(loadEmployees());
+    this.loaded$.pipe(take(1)).subscribe(loaded => {
+      if (!loaded) {
+        this.store.dispatch(loadEmployees());
+      }
+    })
   }
 
   deleteEmployee(id: number) {

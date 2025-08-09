@@ -109,4 +109,8 @@ export class EmployeeFormComponent implements OnInit {
   updateEmployee(employee: Employee) {
     this.store.dispatch(updateEmployee({ employee }));
   }
+
+  goBack() {
+    this.router.navigate(['/employees']);
+  }
 }

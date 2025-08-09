@@ -1,6 +1,7 @@
 <div *ngIf="isLoading" class="loader-overlay">
     <div class="loader"></div>
 </div>
+<button class="add-button" (click)="goBack()">back</button>
 
 <form [formGroup]="form" (ngSubmit)="submitForm()" class="employee-form">
     <h2 class="form-title">{{ isEditMode ? 'Edit' : 'Add' }} Employee</h2>

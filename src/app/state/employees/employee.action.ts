@@ -4,7 +4,7 @@ import { Employee } from '../../interfaces/employee.model';
 // add employee
 export const addEmployee = createAction('[Employee] Add Employee', props<{ employee: Employee }>());
 export const addEmployeeSuccess = createAction('[Employee] Add Employee Success',
-    props<{ employee: Employee }>());
+    props<{ employee: Employee }>());  // this is employee data, we are storing in the store
 
 export const addEmployeeFailure = createAction('[Employee] Add Employee Failure',
     props<{ error: any }>());

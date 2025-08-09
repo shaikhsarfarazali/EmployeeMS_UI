@@ -5,13 +5,15 @@ import { addEmployee, addEmployeeFailure, addEmployeeSuccess, deleteEmployee, de
 export interface EmployeeState {
     employees: Employee[];
     error: string | null;
-    loading: boolean
+    loading: boolean;
+    loaded?: boolean; // Optional property to track if employees are loaded
 }
 
 export const initialState: EmployeeState = {
     employees: [],
     error: null,
-    loading: false
+    loading: false,
+    loaded: false, // Initialize loaded to false
 };
 
 export const employeeReducer = createReducer(
@@ -30,7 +32,7 @@ export const employeeReducer = createReducer(
         ...state, loading: true
     })),
     on(updateEmployeeSuccess, (state, { employee }) => ({
-        ...state, employees: [...state.employees, { ...employee }], error: null, loading: false
+        ...state, employees: [...state.employees, { ...employee }], error: null, loading: false, loaded: false
     })),
     on(updateEmployeeFailure, (state, { error }) => ({
         ...state, error, loading: false
@@ -41,7 +43,7 @@ export const employeeReducer = createReducer(
     })),
     on(loadEmployees, (state) => ({ ...state, loading: true })),
     on(loadEmployeesSuccess, (state, { employees }) => ({
-        ...state, employees, error: null, loading: false
+        ...state, employees, error: null, loading: false, loaded: true // Set loaded to true when employees are successfully loaded
     })),
     on(loadEmployeesFailure, (state, { error }) => ({
         ...state, error, loading: false
