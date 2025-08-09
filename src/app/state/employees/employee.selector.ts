@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { EmployeeState } from "./employee.reducer";
+import { EmployeeState } from "./employee.model";
 
+// 'employees' should be same as the key in the store mention in app.config.ts
 export const selectEmployeeState = createFeatureSelector<EmployeeState>('employees');
 
 export const selectEmployees = createSelector(

@@ -25,8 +25,6 @@ export class EmployeeListComponent implements OnInit {
   loaded$ = this.store.select(selectEmployeesLoaded);
   filteredEmployees$: Observable<Employee[]>;
 
-  employees: any[] = [];
-
   isAdmin: boolean = false;
 
   searchTerm = '';

@@ -68,6 +68,14 @@ input.ng-touched.ng-invalid {
 .submit-button:hover {
   background-color: #218838;
 }
+.back-button {
+  font-size: x-large;
+  color: #fff;
+  &:hover {
+    background-color: #2e2e4d;
+    color: #fff;
+  }
+}
 
 /* Circular Loader */
 .loader {

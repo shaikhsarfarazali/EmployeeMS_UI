@@ -4,13 +4,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee/employee.service';
 import { sharedImports } from '../../common/shared-imports';
 import { Store } from '@ngrx/store';
-import { selectEmployees, selectEmployeesLoading } from '../../state/employees/employee.selector';
+import { selectEmployees } from '../../state/employees/employee.selector';
 import { addEmployee, updateEmployee } from '../../state/employees/employee.action';
 import { Employee } from '../../interfaces/employee.model';
+import { take } from 'rxjs';
+import { selectUsers, selectUsersLoaded, selectUsersLoading } from '../../state/users/user.selector';
+import { loadUsers } from '../../state/users/user.action';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-employee-form',
-  imports: [sharedImports],
+  imports: [sharedImports, AsyncPipe],
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.scss'],
   standalone: true
@@ -20,12 +24,14 @@ export class EmployeeFormComponent implements OnInit {
 
   private store = inject(Store);
   employee$ = this.store.select(selectEmployees);
-  loading$ = this.store.select(selectEmployeesLoading);
+  loading$ = this.store.select(selectUsersLoading);
+  loaded$ = this.store.select(selectUsersLoaded);
+
+  users$ = this.store.select(selectUsers);
 
   form: FormGroup;
   isEditMode = false;
   employeeId: number = 0;
-  users: any[] = [];
   isLoading: boolean = true;
 
   get userId() {
@@ -72,10 +78,12 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   loadUsers() {
-    this._employeeService.getAllUsers().subscribe((res) => {
-      this.users = res;
+    this.loaded$.pipe(take(1)).subscribe(loaded => {
+      if (!loaded) {
+        this.store.dispatch(loadUsers());
+      }
       this.isLoading = false;
-    })
+    });
   }
 
   loadEmployee(id: number) {

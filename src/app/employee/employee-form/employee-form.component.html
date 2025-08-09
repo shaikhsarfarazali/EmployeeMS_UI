@@ -1,14 +1,14 @@
 <div *ngIf="isLoading" class="loader-overlay">
     <div class="loader"></div>
 </div>
-<button class="add-button" (click)="goBack()">back</button>
+<button class="back-button" (click)="goBack()">←</button>
 
 <form [formGroup]="form" (ngSubmit)="submitForm()" class="employee-form">
     <h2 class="form-title">{{ isEditMode ? 'Edit' : 'Add' }} Employee</h2>
     <div class="form-group">
         <label for="user">Select User</label>
         <select formControlName="userId">
-            <option *ngFor="let user of users" [value]="user.id">
+            <option *ngFor="let user of users$ | async" [value]="user.id">
                 {{ user.fullName || user.email }}
             </option>
         </select>
@@ -43,3 +43,9 @@
         {{ isEditMode ? 'Update' : 'Create' }}
     </button>
 </form>
+
+@if (loading$ | async){
+<div class="loading">
+    Loading employees...
+</div>
+}

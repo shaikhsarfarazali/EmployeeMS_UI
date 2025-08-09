@@ -8,12 +8,14 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { employeeReducer } from './state/employees/employee.reducer';
 import { EmployeeEffects } from './state/employees/employee.effect';
+import { userReducer } from './state/users/user.reducer';
+import { UserEffects } from './state/users/user.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
   provideRouter(routes),
   provideHttpClient(withInterceptors([tokenInterceptor])),
-  provideStore({ employees: employeeReducer }),
-  provideEffects([EmployeeEffects])
+  provideStore({ employees: employeeReducer, users: userReducer }),
+  provideEffects([EmployeeEffects, UserEffects])
   ]
 };

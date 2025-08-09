@@ -1,20 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { Employee } from "../../interfaces/employee.model"
 import { addEmployee, addEmployeeFailure, addEmployeeSuccess, deleteEmployee, deleteEmployeeFailure, deleteEmployeeSuccess, loadEmployees, loadEmployeesFailure, loadEmployeesSuccess, navigateAfterSuccess, updateEmployee, updateEmployeeFailure, updateEmployeeSuccess } from "./employee.action";
-
-export interface EmployeeState {
-    employees: Employee[];
-    error: string | null;
-    loading: boolean;
-    loaded?: boolean; // Optional property to track if employees are loaded
-}
-
-export const initialState: EmployeeState = {
-    employees: [],
-    error: null,
-    loading: false,
-    loaded: false, // Initialize loaded to false
-};
+import { initialState } from "./employee.model";
 
 export const employeeReducer = createReducer(
     initialState,
