@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { EmployeeService } from '../../services/employee/employee.service';
 import { Router } from '@angular/router';
 import { sharedImports } from '../../common/shared-imports';
@@ -16,6 +16,10 @@ import { Employee } from '../../interfaces/employee.model';
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss',
   standalone: true,
+  // encapsulation: ViewEncapsulation.None // none is used to allow component to globally apply his styles to whole application, if needed
+  // encapsulation: ViewEncapsulation.ShadowDom // shadowdom is used to allow this component to use its own styles without affecting the global styles
+  // encapsulation: ViewEncapsulation.Emulated // emulated is the default and allows styles to be scoped to this component only
+
 })
 export class EmployeeListComponent implements OnInit {
 
