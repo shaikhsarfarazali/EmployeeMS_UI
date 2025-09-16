@@ -3,13 +3,9 @@ import { authGuard } from "./core/guards/auth.guard";
 import { roleGuard } from "./core/guards/role.guard";
 import { MainLayoutComponent } from "./layout/main-layout/main-layout.component";
 import { LoginComponent } from "./auth/login/login.component";
-import { AdminComponent } from "./dashboard/admin/admin.component";
-import { EmployeeComponent } from "./dashboard/employee/employee.component";
-import { HrComponent } from "./dashboard/hr/hr.component";
 import { UnauthorizedComponent } from "./dashboard/unauthorized/unauthorized.component";
 import { EmployeeFormComponent } from "./employee/employee-form/employee-form.component";
 import { EmployeeListComponent } from "./employee/employee-list/employee-list.component";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { EmployeeProfileComponent } from "./employee/employee-profile/employee-profile.component";
 
