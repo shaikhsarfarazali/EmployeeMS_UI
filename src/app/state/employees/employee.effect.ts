@@ -18,6 +18,7 @@ export class EmployeeEffects {
 
     addEmployee$ = createEffect(() =>
         this.action$.pipe(
+            // we use ofType to filter the action stream so our effect only responds to speific action 
             ofType(addEmployee),
             switchMap(({ employee }) =>
                 this._employeeService.createEmployee(employee).pipe(
