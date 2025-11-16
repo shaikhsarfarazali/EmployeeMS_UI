@@ -1,0 +1,58 @@
+<div class="header-container">
+    <h2>Employee List</h2>
+    @if (isAdmin){
+    <button class="add-button" (click)="navigateToAdd()">Add New</button>
+    }
+</div>
+
+<div class="toolbar">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." (input)="onSearchInput($event)" />
+</div>
+<table border="1" cellspacing="0" cellpadding="8">
+    <thead>
+        <tr>
+            <th (click)="setSort('id')">Sr no</th>
+            <!-- <th (click)="setSort('fullName')">Name</th> -->
+            <th (click)="setSort('userEmail')">Email</th>
+            <th (click)="setSort('department')">Department</th>
+            <th (click)="setSort('salary')">Salary</th>
+            <th>Date of Joining</th>
+            @if (isAdmin){
+
+            <th>Actions</th>
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (item of filteredEmployees$ | async ; track $index){
+        <tr>
+            <td>{{ $index+1 }}</td>
+            <td>{{ item.userEmail }}</td>
+            <td>{{ item.department }}</td>
+            <td>{{ item.salary }}</td>
+            <td>{{ item.dateOfJoining | date }}</td>
+            <td class="actions">
+                <!-- <button class="view" (click)="viewEmployee(item)">View</button> -->
+                @if (isAdmin){
+                <button class="edit" (click)="editEmployee(item)">Edit</button>
+                <button class="delete" (click)="deleteEmployee(item.id)">Delete</button>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+@if (loading$ | async){
+<div class="loading">
+    Loading employees...
+</div>
+}
+
+<div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="(currentPage * pageSize) >= totalPages">Next</button>
+</div>

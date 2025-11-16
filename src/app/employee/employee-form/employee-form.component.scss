@@ -1,0 +1,111 @@
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+input.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+.employee-form {
+  max-width: 400px; /* Form width */
+  margin: 0 auto; /* Center the form */
+  padding: 20px; /* Add padding */
+  background-color: #f9fafb; /* Light background */
+  border: 1px solid #ddd; /* Border for form */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.form-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px; /* Space below title */
+  color: #333;
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 15px; /* Space between fields */
+}
+
+.form-group label {
+  display: block; /* Make label block */
+  font-size: 14px; /* Label font size */
+  font-weight: bold; /* Bold label text */
+  margin-bottom: 5px; /* Space between label and input */
+  color: #555;
+}
+
+.form-control {
+  width: 100%; /* Full-width input */
+  padding: 10px; /* Input padding */
+  font-size: 14px; /* Input font size */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+.form-control:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add subtle shadow */
+}
+
+.error-message {
+  margin-top: 5px;
+  color: #d9534f;
+  font-size: 12px;
+}
+
+.submit-button {
+  width: 100%;
+  font-size: 16px;
+  background-color: #28a745;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}
+.back-button {
+  font-size: x-large;
+  color: #fff;
+  &:hover {
+    background-color: #2e2e4d;
+    color: #fff;
+  }
+}
+
+/* Circular Loader */
+.loader {
+  border: 8px solid #f3f3f3; /* Light gray */
+  border-top: 8px solid #1e1e2f; /* Blue */
+  border-radius: 50%; /* Circular shape */
+  width: 50px; /* Loader size */
+  height: 50px; /* Loader size */
+  animation: spin 1s linear infinite; /* Spinning animation */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Overlay to block background */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  z-index: 1000; /* Ensure it's above everything */
+}
