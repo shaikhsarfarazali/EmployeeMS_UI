@@ -4,7 +4,7 @@ import { initialState } from "./employee.model";
 
 export const employeeReducer = createReducer(
     initialState,
-    on(addEmployee, (state, { employee }) => ({
+    on(addEmployee, (state) => ({
         ...state, loading: true
     })),
     on(addEmployeeSuccess, (state, { employee }) => ({

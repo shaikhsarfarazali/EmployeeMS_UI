@@ -25,6 +25,7 @@ import { Employee } from '../../interfaces/employee.model';
 export class EmployeeListComponent implements OnInit {
 
   private store = inject(Store);
+  // selectors
   employee$ = this.store.select(selectEmployees);
   loading$ = this.store.select(selectEmployeesLoading);
   loaded$ = this.store.select(selectEmployeesLoaded);
